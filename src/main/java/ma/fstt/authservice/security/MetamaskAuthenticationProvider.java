@@ -11,7 +11,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import java.util.stream.Collectors;
+import java.util.List;
 
 /**
  * AuthenticationProvider custom pour MetaMask
@@ -53,9 +53,8 @@ public class MetamaskAuthenticationProvider implements AuthenticationProvider {
         }
 
         // 3. Construire les authorities (rôles)
-        var authorities = user.roles().stream()
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+        var authorities = List.of(new SimpleGrantedAuthority(user.role()));
+
 
         // 4. Retourner une Authentication réussie
         return new MetamaskAuthenticationToken(

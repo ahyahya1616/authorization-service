@@ -28,7 +28,7 @@ public class JwtCustomizerConfig {
             if (principal instanceof MetamaskUserPrincipal p) {
                 context.getClaims().claim("id", p.getUser().id());
                 context.getClaims().claim("email", p.getUser().email());
-                context.getClaims().claim("roles", p.getUser().roles());
+                context.getClaims().claim("role", p.getUser().role());
             }
 
         };
