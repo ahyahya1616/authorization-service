@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Feign Client pour communiquer avec UserManagementService
  */
-@FeignClient(name = "user-management-service", path = "/api/users")
+@FeignClient(name = "user-management-service",  url = "${user.uri}", path = "/api/users")
 public interface UserServiceClient {
 
     @GetMapping("/wallet/{wallet}")

@@ -67,10 +67,7 @@ public class MetamaskGrantAuthenticationProvider implements AuthenticationProvid
         String wallet = metamaskAuth.getWallet();
         String signature = metamaskAuth.getSignature();
 
-        boolean isValid = signatureVerificationService.verifySignature(wallet, signature);
-        if (!isValid) {
-            throw new InvalidSignatureException("Signature MetaMask invalide");
-        }
+         signatureVerificationService.verifySignature(wallet, signature);
 
         // 3. Récupérer l'utilisateur
         UserDto user;

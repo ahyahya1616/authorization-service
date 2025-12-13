@@ -29,7 +29,7 @@ public class SignatureVerificationService {
      * Vérifie que la signature correspond au nonce et au wallet
      * ✅ IMPORTANT: Cette méthode récupère le nonce SANS le supprimer
      */
-    public boolean verifySignature(String wallet, String signature) {
+    public void verifySignature(String wallet, String signature) {
         log.info("Vérification de la signature pour wallet: {}", wallet);
 
         // ✅ Récupérer le nonce SANS le supprimer
@@ -64,11 +64,10 @@ public class SignatureVerificationService {
 
             log.info("✅ Signature valide pour wallet: {}", wallet);
 
-            // ✅ CORRECTION CRITIQUE: Supprimer le nonce SEULEMENT après vérification réussie
+            // CORRECTION CRITIQUE: Supprimer le nonce SEULEMENT après vérification réussie
             userServiceClient.deleteNonce(wallet);
             log.debug("Nonce supprimé après vérification réussie");
 
-            return true;
 
         } catch (InvalidSignatureException e) {
             // Ne pas supprimer le nonce en cas d'échec pour permettre une nouvelle tentative

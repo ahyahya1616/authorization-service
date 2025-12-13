@@ -40,10 +40,11 @@ public class SecurityConfig {
                         .requestMatchers("/oauth2/jwks").permitAll()
                         .requestMatchers("/.well-known/**").permitAll()
                         .requestMatchers("/userinfo").permitAll()
-
+                        .requestMatchers("/api/auth/metamask/**").permitAll()
                         // ✅ Health check et actuator
                         .requestMatchers("/actuator/health").permitAll()
                         .requestMatchers("/actuator/info").permitAll()
+                        .requestMatchers("/actuator/env").permitAll()
 
                         // ✅ Tout le reste nécessite une authentification
                         .anyRequest().authenticated()

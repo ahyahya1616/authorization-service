@@ -20,7 +20,7 @@ public class RegisteredClientConfig {
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
 
-        // 🚀 CLIENT UNIQUE : authentification-service
+        // CLIENT UNIQUE : authentification-service
         RegisteredClient authServiceClient = RegisteredClient.withId(UUID.randomUUID().toString())
                 .clientId("authentification-service-client")
                 .clientSecret("{noop}authentification-service-secret")
@@ -38,9 +38,9 @@ public class RegisteredClientConfig {
                 .scope("read")
                 .scope("write")
 
-                // 🎯 Durées des tokens
+                // Durées des tokens
                 .tokenSettings(TokenSettings.builder()
-                        .accessTokenTimeToLive(Duration.ofMinutes(1))
+                        .accessTokenTimeToLive(Duration.ofMinutes(15))
                         .refreshTokenTimeToLive(Duration.ofDays(7))
                         .reuseRefreshTokens(false) // on change RT à chaque refresh
                         .build())

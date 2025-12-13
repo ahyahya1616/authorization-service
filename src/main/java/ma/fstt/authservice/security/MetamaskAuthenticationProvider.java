@@ -39,10 +39,8 @@ public class MetamaskAuthenticationProvider implements AuthenticationProvider {
         String email = token.getEmail();
 
         // 1. Vérifier la signature cryptographique
-        boolean isValid = signatureVerificationService.verifySignature(wallet, signature);
-        if (!isValid) {
-            throw new InvalidSignatureException("Signature MetaMask invalide");
-        }
+         signatureVerificationService.verifySignature(wallet, signature);
+
 
         // 2. Récupérer l'utilisateur depuis UserManagementService
         UserDto user;
