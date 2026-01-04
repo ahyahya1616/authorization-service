@@ -9,6 +9,7 @@ import ma.fstt.authservice.security.oauth2.MetamaskGrantAuthenticationConverter;
 import ma.fstt.authservice.security.oauth2.MetamaskGrantAuthenticationProvider;
 import ma.fstt.authservice.service.SignatureVerificationService;
 import ma.fstt.authservice.service.UserServiceClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -44,6 +45,9 @@ public class AuthorizationServerConfig {
 
     private final SignatureVerificationService signatureVerificationService;
     private final UserServiceClient userServiceClient;
+
+    @Value("${spring.security.oauth2.authorizationserver.issuer}")
+    private String issuer;
 
     public AuthorizationServerConfig(
             SignatureVerificationService signatureVerificationService,
@@ -283,7 +287,7 @@ public class AuthorizationServerConfig {
     @Bean
     public AuthorizationServerSettings authorizationServerSettings() {
         return AuthorizationServerSettings.builder()
-                .issuer("http://localhost:9000")
+                .issuer(issuer)
                 .authorizationEndpoint("/oauth2/authorize")
                 .tokenEndpoint("/oauth2/token")
                 .tokenIntrospectionEndpoint("/oauth2/introspect")
