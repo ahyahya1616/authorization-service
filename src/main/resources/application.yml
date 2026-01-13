@@ -7,3 +7,15 @@ spring:
     name: auth-server # correspond au nom du fichier dans le repo config
   config:
     import: "optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888}"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,env,refresh
+  endpoint:
+    prometheus:
+      enabled: true
+  security:
+    enabled: false
+>>>>>>> 10dc45547cf539e9705d80cad5a11f837bd14011
