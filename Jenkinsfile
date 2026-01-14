@@ -2,6 +2,6 @@
 
 standardBackendPipeline(
     appName: 'authorization-service',
-    registry: 'yassinekamouss',
+    registry: 'saaymo',
      sonarProjectKey: 'auth-serverice'
 )
